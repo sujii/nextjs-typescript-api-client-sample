@@ -56,6 +56,20 @@
   font-size: 1.5rem;
 }
 
+.postalcode {
+  margin: 1rem 0;
+}
+
+.postalcode input {
+  text-align: center;
+  padding: 0;
+  min-width: 30rem;
+  line-height: 2;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
 .code {
   background: #fafafa;
   border-radius: 5px;
@@ -63,6 +77,13 @@
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.requestButton input {
+  border-radius: .85rem;
+  border: 1px solid black;
+  line-height: 2;
+  padding: .2rem 1rem;
 }
 
 .grid {
