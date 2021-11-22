@@ -1,7 +1,7 @@
 # nextjs-typescript-api-client-sample
 api-client-UI entry-level testing samp
 
-## ガラパゴス社 技術テスト要件
+## 技術テスト要件
 下記の基本仕様を持つWebアプリケーションを実装する
 
 - [ ] 郵便番号を入力すると、郵便番号に対応する住所を検索し、結果を表示
