@@ -1,21 +1,18 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useIntersection } from "../../../hooks/scroll";
-import { InformationSummary } from "../../../openapi/model/information-summary";
-import CircleLoader from "../../atoms/loader/CircleLoader";
-import Margin from "../../atoms/spacing/Margin";
-import CSS from "./InfoList.scss";
-import InfoListItem from "./InfoListItem";
+// import CircleLoader from "../../atoms/loader/CircleLoader";
+// import Margin from "../../atoms/spacing/Margin";
+// import CSS from "./InfoList.scss";
 
 export type InfoListProps = {
-  infoList: InformationSummary[];
-  onLoadNext: () => void;
+  infoList: string[];
+  // onLoadNext: () => void;
   hasNext: boolean;
   categoryName: string;
   isLoading: boolean;
 };
 
 const InfoList: React.FC<InfoListProps> = (props) => {
-  const { infoList, onLoadNext, hasNext, categoryName, isLoading } = props;
+  const { infoList, hasNext, categoryName, isLoading } = props;
 
   const [loaderElement, setLoaderElement] = useState<HTMLDivElement | null>(
     null
@@ -27,17 +24,6 @@ const InfoList: React.FC<InfoListProps> = (props) => {
     }
   }, []);
 
-  const isIntersection = useIntersection(loaderElement, {
-    rootMargin: "0px",
-    threshold: 0.8,
-  });
-
-  useEffect(() => {
-    if (isIntersection && infoList.length > 0) {
-      onLoadNext();
-    }
-  }, [infoList.length, isIntersection, onLoadNext]);
-
   const showCircleLoader = hasNext && !isLoading;
 
   return (
@@ -46,15 +32,15 @@ const InfoList: React.FC<InfoListProps> = (props) => {
         {infoList &&
           infoList.map((item) => {
             return (
-              <Margin y={2} key={item.informationId}>
-                <InfoListItem info={item} categoryName={categoryName} />
-              </Margin>
+              <div>
+                {item}
+              </div>
             );
           })}
       </div>
       {showCircleLoader && (
-        <div ref={measuredRef} className={CSS.loader}>
-          <CircleLoader />
+        <div>
+          <p>Loading</p>
         </div>
       )}
     </>
