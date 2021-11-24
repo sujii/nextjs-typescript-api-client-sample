@@ -1,37 +1,84 @@
+import { Dispatch } from "redux";
 import { createAction, handleActions } from "redux-actions";
-// import { EventUIResponse } from "../openapi/model";
-
+import axios from "axios";
 export type AddessFromPostalCodeState = {
-  address?: string;
+  address?: string[];
 };
 
-export const postalCodeInitialState: AddessFromPostalCodeState = {};
+const API_POSTALCODE_ENDPOINT = "https://zipcloud.ibsnet.co.jp/api";
 
-const SET_ADD_CODE = "app/postalCodeI/SET_ADD_CODE";
-const CLEAR_ADD_CODE = "app/postalCodeI/CLEAR_ADD_CODE";
+export const addressInitialState: AddessFromPostalCodeState = {};
 
-export const setPostalCodeAction = createAction<AddessFromPostalCodeState["address"]>(
-  SET_ADD_CODE
+// Actions
+const GET_ADDRESS_REQUEST = "app/postalCode/GET_ADDRESS_REQUEST";
+const GET_ADDRESS_SUCCESS = "app/postalCode/GET_ADDRESS_SUCCESS";
+const GET_ADDRESS_FAILURE = "app/postalCode/GET_ADDRESS_FAILURE";
+const SET_ADDRESS = "app/postalCode/SET_ADD_CODE";
+const CLEAR_ADDRESS = "app/postalCode/CLEAR_ADD_CODE";
+
+export interface IadressState {
+  address: object;
+}
+
+export const SetPostalCodeAction = createAction<AddessFromPostalCodeState["address"]>(
+  SET_ADDRESS
 );
 
-export const clearPostalCodeAction = createAction<void>(CLEAR_ADD_CODE);
+export const GetPostalCodeAction = createAction(
+  GET_ADDRESS_REQUEST
+);
 
+export const GetGAddressFromZipSuccessAction = createAction(
+  GET_ADDRESS_SUCCESS
+);
+
+export const ClearPostalCodeAction = createAction<void>(CLEAR_ADDRESS);
+
+export const GetAddressFromZip = (
+  zipCode: string | number,
+) => async (dispatch: Dispatch) => {
+  dispatch(GetPostalCodeAction());
+  try {
+    const result = await axios.get(API_POSTALCODE_ENDPOINT + '/search?zipcode=' + zipCode);
+    if (!result) {
+      return;
+    }
+
+    console.log('modules/postalCode ////////');
+    console.dir(result.data);
+
+    dispatch(GetGAddressFromZipSuccessAction({ address: result.data }));
+  } catch (e) {
+    console.error(e);
+  }
+
+};
+
+// Reducer
 export default handleActions(
   {
-    [SET_ADD_CODE]: (state, action) => {
-      const address = action.payload as Parameters<typeof setPostalCodeAction>[0];
+    [SET_ADDRESS]: (state, action) => {
+      const address = action.payload as Parameters<typeof SetPostalCodeAction>[0];
 
       return {
         ...state,
         address,
       };
     },
-    [CLEAR_ADD_CODE]: (state) => {
+    [GET_ADDRESS_SUCCESS]: (state, action) => {
+      const address = action.payload as Parameters<typeof SetPostalCodeAction>[0];
+
       return {
         ...state,
-        address: undefined,
+        address,
       };
     },
+    // [CLEAR_ADDRESS]: (state) => {
+    //   return {
+    //     ...state,
+    //     address: undefined,
+    //   };
+    // },
   },
-  postalCodeInitialState
+  addressInitialState
 );
