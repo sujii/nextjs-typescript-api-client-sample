@@ -22,9 +22,9 @@ http://zipcloud.ibsnet.co.jp/doc/api
 
 ## 動作確認方法
 
-　1. リポジトリをPullして下さい
-　2. `npm install` または 'yarn'
-　3. 一度ビルドします `npm run build`
-　4. nextサーバ起動 `npm run start`
-　5. dev環境の起動は `npm run dev`
-　6. 4, 5 どちらでサーバ起動しても `http://localhost:3000` が表示画面となります
+1. リポジトリをPullして下さい
+2. `npm install` または 'yarn'
+3. 一度ビルドします `npm run build`
+4. nextサーバ起動 `npm run start`
+5. dev環境の起動は `npm run dev`
+6. 4, 5 どちらでサーバ起動しても `http://localhost:3000` が表示画面となります
