@@ -1,5 +1,5 @@
 # nextjs-typescript-api-client-sample
-api-client-UI entry-level testing samp
+api-client-UI entry-level testing sample
 
 ## 技術テスト要件
 下記の基本仕様を持つWebアプリケーションを実装する
