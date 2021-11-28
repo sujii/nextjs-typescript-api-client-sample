@@ -80,10 +80,10 @@
 }
 
 .requestButton input {
-  border-radius: .85rem;
+  border-radius: 0.85rem;
   border: 1px solid black;
   line-height: 2;
-  padding: .2rem 1rem;
+  padding: 0.2rem 1rem;
 }
 
 .grid {

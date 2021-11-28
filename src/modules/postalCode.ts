@@ -20,45 +20,43 @@ export interface IadressState {
   address: object;
 }
 
-export const SetPostalCodeAction = createAction<AddessFromPostalCodeState["address"]>(
-  SET_ADDRESS
-);
+export const SetPostalCodeAction =
+  createAction<AddessFromPostalCodeState["address"]>(SET_ADDRESS);
 
-export const GetPostalCodeAction = createAction(
-  GET_ADDRESS_REQUEST
-);
+export const GetPostalCodeAction = createAction(GET_ADDRESS_REQUEST);
 
-export const GetGAddressFromZipSuccessAction = createAction(
-  GET_ADDRESS_SUCCESS
-);
+export const GetGAddressFromZipSuccessAction =
+  createAction(GET_ADDRESS_SUCCESS);
 
 export const ClearPostalCodeAction = createAction<void>(CLEAR_ADDRESS);
 
-export const GetAddressFromZip = (
-  zipCode: string | number,
-) => async (dispatch: Dispatch) => {
-  dispatch(GetPostalCodeAction());
-  try {
-    const result = await axios.get(API_POSTALCODE_ENDPOINT + '/search?zipcode=' + zipCode);
-    if (!result) {
-      return;
+export const GetAddressFromZip =
+  (zipCode: string | number) => async (dispatch: Dispatch) => {
+    dispatch(GetPostalCodeAction());
+    try {
+      const result = await axios.get(
+        API_POSTALCODE_ENDPOINT + "/search?zipcode=" + zipCode
+      );
+      if (!result) {
+        return;
+      }
+
+      console.log("modules/postalCode ////////");
+      console.dir(result.data);
+
+      dispatch(GetGAddressFromZipSuccessAction({ address: result.data }));
+    } catch (e) {
+      console.error(e);
     }
-
-    console.log('modules/postalCode ////////');
-    console.dir(result.data);
-
-    dispatch(GetGAddressFromZipSuccessAction({ address: result.data }));
-  } catch (e) {
-    console.error(e);
-  }
-
-};
+  };
 
 // Reducer
 export default handleActions(
   {
     [SET_ADDRESS]: (state, action) => {
-      const address = action.payload as Parameters<typeof SetPostalCodeAction>[0];
+      const address = action.payload as Parameters<
+        typeof SetPostalCodeAction
+      >[0];
 
       return {
         ...state,
@@ -66,7 +64,9 @@ export default handleActions(
       };
     },
     [GET_ADDRESS_SUCCESS]: (state, action) => {
-      const address = action.payload as Parameters<typeof SetPostalCodeAction>[0];
+      const address = action.payload as Parameters<
+        typeof SetPostalCodeAction
+      >[0];
 
       return {
         ...state,
