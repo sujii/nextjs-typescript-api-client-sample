@@ -12,10 +12,11 @@ const SET_CONFIG = "app/config/SET_CONFIG";
 export const SetConfigAction = createAction(SET_CONFIG);
 
 // side effects
-export const SetConfig =
-  (isServer: boolean, path: string) => (dispatch: Dispatch) => {
-    dispatch(SetConfigAction({ isServer, path }));
-  };
+export const SetConfig = (isServer: boolean, path: string) => (
+  dispatch: Dispatch
+) => {
+  dispatch(SetConfigAction({ isServer, path }));
+};
 
 // Reducer
 export default handleActions(

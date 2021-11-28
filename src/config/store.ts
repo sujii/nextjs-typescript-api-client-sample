@@ -7,13 +7,13 @@ const configureStore = () => {
   const initialState = getInitialState();
   const middleware: Middleware[] = [thunk];
 
-  // if (process.env.DEPLOY_ENV === "development") {
-  middleware.push(logger);
-  // }
+     // if (process.env.DEPLOY_ENV === "development") {
+    middleware.push(logger);
+     // }
 
   const composeEnhancers =
     // (process.env.DEPLOY_ENV === "development" &&
-    (typeof window !== "undefined" &&
+      (typeof window !== "undefined" &&
       (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
     compose;
   return createStore(
