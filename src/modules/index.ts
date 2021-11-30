@@ -5,13 +5,13 @@ import pages, { IPageState, pageInitialState } from "./pages";
 import toast, { toastInitialState, IToastState } from "./toast";
 import address, { addressInitialState, IadressState } from "./postalCode";
 
-export default () =>
-  combineReducers({
-    address,
-    config,
-    pages,
-    toast,
-  });
+// combineReducers
+export default combineReducers({
+  address,
+  config,
+  pages,
+  toast,
+});
 
 export const getInitialState = () => ({
   address: addressInitialState,
