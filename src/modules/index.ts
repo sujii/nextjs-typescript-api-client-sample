@@ -5,7 +5,8 @@ import pages, { IPageState, pageInitialState } from "./pages";
 import toast, { toastInitialState, IToastState } from "./toast";
 import address, { addressInitialState, IadressState } from "./postalCode";
 
-export default () =>
+// combineReducers
+const reducer = () =>
   combineReducers({
     address,
     config,
@@ -28,3 +29,5 @@ declare global {
     toast: IToastState;
   }
 }
+
+export default reducer;
