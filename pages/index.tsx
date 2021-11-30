@@ -20,7 +20,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
   );
 
   const { addressData } = usePostalCodeApi(zipCode);
-  const addressResults = JSON.stringify(addressData);
+  const addressStings = JSON.stringify(addressData);
 
   // console.dir("address ////////");
   // console.dir(address);
@@ -41,7 +41,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       </Head>
 
       <main className={styles.main}>
-        <p>{addressResults}</p>
+        <p>{addressStings}</p>
 
         <p className={styles.postalcode}>
           <input
