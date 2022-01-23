@@ -2,8 +2,8 @@ import { AppProps } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
 import { setAppElement } from "react-modal";
-import configureStore from "../src/config/store";
-import "./styles/globals.scss";
+import configureStore from "../config/store";
+import "../styles/globals.scss";
 
 const store = configureStore();
 
