@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { JsonFormatter } from "react-json-formatter";
 import { usePostalCodeApi } from "../src/hooks/postalCodeApi";
 import { GetAddressFromZip } from "../src/modules/postalCode";
 import styles from "./styles/Home.module.scss";
@@ -19,14 +20,14 @@ const IndexPage: React.FC<IndexPageProps> = () => {
     []
   );
 
-  const { addressData } = usePostalCodeApi(zipCode);
+  const addressData = usePostalCodeApi(zipCode);
   const addressStings = JSON.stringify(addressData);
 
-  // console.dir("address ////////");
-  // console.dir(address);
-
-  // console.dir("addressData ////////");
-  // console.dir(addressData);
+  const JsonStyle = {
+    propertyStyle: { color: 'red' },
+    stringStyle: { color: 'green' },
+    numberStyle: { color: 'darkorange' }
+  };
 
   const getAddress = useCallback(() => {
     if (zipCode) {
@@ -41,7 +42,9 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       </Head>
 
       <main className={styles.main}>
-        <p>{addressStings}</p>
+
+      {addressData?.addressData != undefined ? 
+        (<JsonFormatter json={addressStings} tabWith='4' JsonStyle={JsonStyle} />) : (<p></p>) }
 
         <p className={styles.postalcode}>
           <input
