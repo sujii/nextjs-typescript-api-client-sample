@@ -24,9 +24,9 @@ const IndexPage: React.FC<IndexPageProps> = () => {
   const addressStings = JSON.stringify(addressData);
 
   const JsonStyle = {
-    propertyStyle: { color: 'red' },
-    stringStyle: { color: 'green' },
-    numberStyle: { color: 'darkorange' }
+    propertyStyle: { color: "red" },
+    stringStyle: { color: "green" },
+    numberStyle: { color: "darkorange" },
   };
 
   const getAddress = useCallback(() => {
@@ -42,9 +42,15 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       </Head>
 
       <main className={styles.main}>
-
-      {addressData?.addressData != undefined ? 
-        (<JsonFormatter json={addressStings} tabWith='4' JsonStyle={JsonStyle} />) : (<p></p>) }
+        {addressData?.addressData != undefined ? (
+          <JsonFormatter
+            json={addressStings}
+            tabWith="4"
+            JsonStyle={JsonStyle}
+          />
+        ) : (
+          <p></p>
+        )}
 
         <p className={styles.postalcode}>
           <input
