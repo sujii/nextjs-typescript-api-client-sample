@@ -17,7 +17,7 @@ const configureStore = () => {
       (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
     compose;
   return createStore(
-    rootReducer(),
+    rootReducer,
     initialState,
     composeEnhancers(applyMiddleware(...middleware))
   );
