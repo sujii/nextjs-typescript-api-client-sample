@@ -17,5 +17,5 @@ http://zipcloud.ibsnet.co.jp/doc/api
 
 1. `git clone`
 2. `yarn install`
-3. `npm run dev`
+3. `yarn dev`
 4. Open http://localhost:3000
