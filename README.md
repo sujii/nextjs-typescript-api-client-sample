@@ -13,7 +13,7 @@ api-client-UI entry-level testing sample
 ※ 郵便番号検索API
 http://zipcloud.ibsnet.co.jp/doc/api
 
-## 動作確認
+## SetUp
 
 1. `git clone`
 2. `yarn install`
