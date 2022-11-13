@@ -15,7 +15,7 @@ http://zipcloud.ibsnet.co.jp/doc/api
 
 ## SetUp
 
-1. `git clone`
+1. `git clone && cd nextjs-typescript-api-client-sample`
 2. `yarn install`
 3. `yarn dev`
 4. Open http://localhost:3000
