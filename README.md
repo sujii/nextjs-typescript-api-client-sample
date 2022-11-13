@@ -4,14 +4,14 @@ api-client-UI entry-level testing sample
 
 ## What?
 
-- 郵便番号検索API を使った API-Client のサンプルSPA
-- React
+- 郵便番号検索API を使った API-Client の SinglePagesAPP の SampleRepo
+- Reactjs with
   - Nextjs
   - TypeScript
   - Axios
 
-※ 郵便番号検索API
-http://zipcloud.ibsnet.co.jp/doc/api
+- 郵便番号検索API
+  - http://zipcloud.ibsnet.co.jp/doc/api
 
 ## SetUp
 
