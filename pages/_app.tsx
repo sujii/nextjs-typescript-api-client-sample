@@ -1,4 +1,4 @@
-import { AppProps } from "next/app";
+import App, { AppContext, AppProps } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
 import { setAppElement } from "react-modal";
@@ -9,7 +9,9 @@ const store = configureStore();
 
 setAppElement("#__next");
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = (props: AppProps) => {
+  const { Component, pageProps } = props;
+
   return (
     <Provider store={store}>
       <Component {...pageProps} />
@@ -17,6 +19,22 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  // const { ctx } = appContext;
+  const appProps = await App.getInitialProps(appContext);
+  const isServer = typeof window === "undefined";
+
+  return {
+    ...appProps,
+    // path: ctx.asPath,
+    isServer,
+  };
+};
+
 export default MyApp;
 
-export type AppProp = {};
+export type pageProps = {
+  isServer: boolean;
+  // path: string;
+  statusCode?: number;
+};
