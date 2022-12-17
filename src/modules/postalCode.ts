@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 export type AddessFromPostalCodeState = {
-  address?: string[];
+  address?: object[];
 };
 
 const API_POSTALCODE_ENDPOINT = "https://zipcloud.ibsnet.co.jp/api";
@@ -28,15 +28,19 @@ export const GetPostalCodeAction = createAction(GET_ADDRESS_REQUEST);
 export const GetGAddressFromZipSuccessAction =
   createAction(GET_ADDRESS_SUCCESS);
 
-export const ClearPostalCodeAction = createAction<void>(CLEAR_ADDRESS);
+export const GetGAddressFromZipFailureAction =
+  createAction(GET_ADDRESS_FAILURE);
+
+export const ClearPostalCodeAction = createAction(CLEAR_ADDRESS);
 
 export const GetAddressFromZip =
   (zipCode: string | number) => async (dispatch: Dispatch) => {
-    dispatch(GetPostalCodeAction());
     try {
-      const result = await axios.get(
-        API_POSTALCODE_ENDPOINT + "/search?zipcode=" + zipCode
-      );
+      dispatch(GetPostalCodeAction());
+      const result = await axios
+        .get(API_POSTALCODE_ENDPOINT + "/search?zipcode=" + zipCode)
+        .catch(GetGAddressFromZipFailureAction());
+
       if (!result) {
         return;
       }
@@ -47,6 +51,9 @@ export const GetAddressFromZip =
       dispatch(GetGAddressFromZipSuccessAction({ address: result.data }));
     } catch (e) {
       console.error(e);
+      dispatch(
+        GetGAddressFromZipFailureAction({ address: undefined, error: e })
+      );
     }
   };
 
@@ -73,12 +80,23 @@ export default handleActions(
         address,
       };
     },
-    // [CLEAR_ADDRESS]: (state) => {
-    //   return {
-    //     ...state,
-    //     address: undefined,
-    //   };
-    // },
+    [GET_ADDRESS_FAILURE]: (state, action) => {
+      const error = action.payload as Parameters<
+        typeof GetGAddressFromZipFailureAction
+      >[0];
+
+      return {
+        ...state,
+        address: undefined,
+        error,
+      };
+    },
+    [CLEAR_ADDRESS]: (state) => {
+      return {
+        ...state,
+        address: undefined,
+      };
+    },
   },
   addressInitialState
 );

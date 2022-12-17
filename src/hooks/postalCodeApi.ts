@@ -8,7 +8,7 @@ export const usePostalCodeApi = (zipCode: string | number) => {
   const { address } = useSelector((state: IReduxState) => state.address);
 
   const fetchPostalCodeApi = useCallback(() => {
-    dispatch(GetAddressFromZip(zipCode));
+    GetAddressFromZip(zipCode)(dispatch);
   }, [dispatch, zipCode]);
 
   return { addressData: address, fetchPostalCodeApi };

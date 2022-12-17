@@ -1,14 +1,16 @@
 import Head from "next/head";
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { JsonFormatter } from "react-json-formatter";
+import JsonFormatter from "react-json-formatter";
 import { usePostalCodeApi } from "../src/hooks/postalCodeApi";
-import { GetAddressFromZip } from "../src/modules/postalCode";
+import {
+  GetAddressFromZip,
+  ClearPostalCodeAction,
+} from "../src/modules/postalCode";
 import styles from "./styles/Home.module.scss";
 
 const IndexPage: React.FC<IndexPageProps> = () => {
   const dispatch = useDispatch();
-  const { address } = useSelector((state: IReduxState) => state.address);
   const [zipCode, setZipCode] = useState<number | string | null>(undefined);
 
   const onChangeField = useCallback(
@@ -23,16 +25,17 @@ const IndexPage: React.FC<IndexPageProps> = () => {
   const addressData = usePostalCodeApi(zipCode);
   const addressStings = JSON.stringify(addressData);
 
-  const JsonStyle = {
+  const jsonStyle = {
     propertyStyle: { color: "red" },
     stringStyle: { color: "green" },
     numberStyle: { color: "darkorange" },
   };
 
   const getAddress = useCallback(() => {
-    if (zipCode) {
-      dispatch(GetAddressFromZip(zipCode));
+    if (!zipCode) {
+      return;
     }
+    GetAddressFromZip(zipCode)(dispatch);
   }, [dispatch, zipCode]);
 
   return (
@@ -45,8 +48,8 @@ const IndexPage: React.FC<IndexPageProps> = () => {
         {addressData?.addressData != undefined ? (
           <JsonFormatter
             json={addressStings}
-            tabWith="4"
-            JsonStyle={JsonStyle}
+            tabWith={4}
+            jsonStyle={jsonStyle}
           />
         ) : (
           <p></p>

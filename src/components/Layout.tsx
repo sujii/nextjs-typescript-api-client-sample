@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import { NextPage } from "next";
 
-export type NextPageWithLayout = NextPage & {
-  Layout?: React.FC;
-};
-
-type LayoutProps = {};
+export interface LayoutProps {
+  address?: undefined;
+}
 
 export const Layout: React.FC<LayoutProps> = (props) => {
   useEffect(() => {
@@ -18,7 +15,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
 
   return (
     <div>
-      <div>{props.children}</div>
+      <div>{props.address}</div>
     </div>
   );
 };
