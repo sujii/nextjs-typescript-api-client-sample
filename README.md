@@ -4,8 +4,9 @@ api-client-UI entry-level testing sample
 
 ## What?
 
-- Sample Reference: API-Client SiglePageAPP with Japan Postcode Search API.
-- Reactjs with
+- Sample Reference:
+  - API-Client SiglePageAPP with Japan Postcode Search API.
+- Reactjs with:
   - Nextjs
   - TypeScript
   - Axios
