@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
-    "@babel/runtime": "^7.20.6",
+    "@babel/runtime": "^7.26.10",
     "@faker-js/faker": "^7.6.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/jest": "^29.2.4",
