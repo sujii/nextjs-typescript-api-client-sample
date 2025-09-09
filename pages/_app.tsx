@@ -19,7 +19,7 @@ const MyApp = (props: AppProps) => {
   );
 };
 
-MyApp.getInitialProps = async (appContext: AppContext) => {
+MyApp.getStaticProps = async (appContext: AppContext) => {
   // const { ctx } = appContext;
   const appProps = await App.getInitialProps(appContext);
   const isServer = typeof window === "undefined";
