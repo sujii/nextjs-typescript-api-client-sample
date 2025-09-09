@@ -1,12 +1,9 @@
 import Head from "next/head";
 import React, { useState, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import JsonFormatter from "react-json-formatter";
 import { usePostalCodeApi } from "../src/hooks/postalCodeApi";
-import {
-  GetAddressFromZip,
-  ClearPostalCodeAction,
-} from "../src/modules/postalCode";
+import { GetAddressFromZip } from "../src/modules/postalCode";
 import styles from "./styles/Home.module.scss";
 
 const IndexPage: React.FC<IndexPageProps> = () => {

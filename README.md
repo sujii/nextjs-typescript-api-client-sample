@@ -1,12 +1,13 @@
 # nextjs-typescript-api-client-sample
 
-api-client-UI entry-level testing sample
+> Simple api-client-UI entry-level testing sample
 
 ## What?
 
 - Sample Reference:
   - API-Client SiglePageAPP with Japan Postcode Search API.
 - Reactjs with:
+
   - Nextjs
   - TypeScript
   - Axios
@@ -14,11 +15,23 @@ api-client-UI entry-level testing sample
 - Japan Postcode Search API
   - http://zipcloud.ibsnet.co.jp/doc/api
 
-## SetUp
+## Setup
 
-```rust
-git clone && cd nextjs-typescript-api-client-sample
+```sh
+./scripts/bootstrap.sh
+```
+
+or
+
+```sh
+corepack enable
+yarn set version stable
 yarn install
+```
+
+## Run
+
+```sh
 yarn dev
 open http://localhost:3000
 ```
